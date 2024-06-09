@@ -857,7 +857,7 @@ void () W_FireSniperRifle = {
 
     Pred_Sound(SND_SNIPER_RIFLE);
     KickPlayer(-2, self);
-    self.ammo_shells = self.ammo_shells - 1;
+    self.ammo_nails = self.ammo_nails - 1;
 
     makevectors(self.v_angle);
     src = self.origin + v_forward * 10;
@@ -941,7 +941,7 @@ void () W_FireAutoRifle = {
     FO_Sound(self, CHAN_WEAPON, "weapons/sniper.wav", 1, ATTN_NORM);
 
     KickPlayer(-1, self);
-    self.ammo_shells = self.ammo_shells - 1;
+    self.ammo_nails = self.ammo_nails - 1;
     makevectors(self.v_angle);
     dir = v_forward;
     deathmsg = DMSG_AUTORIFLE;
@@ -1744,6 +1744,7 @@ void () W_Attack = {
             player_medikitb1();
     } else if (ws.weapon == WEAP_TRANQ) {
         player_shot1();
+        self.ammo_nails = self.ammo_nails - 1;
         W_FireTranq();
     } else if (ws.weapon == WEAP_RAILGUN) {
         player_shot1();
